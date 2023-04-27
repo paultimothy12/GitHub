@@ -18,6 +18,7 @@
 6.Pushing after changes(if changes are made in remote and your local is behind):
 	git pull
   find and resolve the changes and then add -> commit -> push
+  	git push -u origin master -f
 
 7.New Branch Creation(Same copy of master branch and you can work on it):
 	git checkout -b branchName 
