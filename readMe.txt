@@ -46,7 +46,7 @@
    Find commit id: git log
 	git reset <commitId>
 
-   Moving all uncommited files to stash and the particular commit files will be restored
+   Moving all current uncommited files to stash and the particular commit files will be restored
 	git add .
 	git stash 
 
@@ -55,6 +55,48 @@
    
    Removing all uncommited files from stash:
 	git stash clear	
+
+14.Delete commits until a particular commit:
+   Follow step 13 until git stash,
+	git push -u origin master -f
+
+15.Multiple commits(Not Pushed) into Single commit:
+	git rebase -i <commitId>
+   Change the commits from pick to s, to commit as single commit
+	pick <commitId1> message
+	s <commitId2> message
+	s <commitId3> message
+	pick <commitId4> message
+		Now, first three commits will be converted to single commit
+	close env and set a message
+   Now push 
+	git push -u origin branchName(-f)
+
+Working on existing repos:
+Read before working,
+  Fork the existing repo to your repositories
+  Never work on master/main on repo, make new branches( 1PR/Branch )
+
+1.Clone the existing repo to our local:
+	git clone <repo link>
+
+2.(Optional) Adding upstream:
+	git remote add upstream <repo link>
+
+3.Work with branches and push them, Send a PR from GitHub
+   Now when upstream repo accepts the PR, upstream-master will be same as your fork-branch
+   But your fork master will be behind upstream-master and fork-branch.	
+
+	To Sync upstream-master and fork-master:
+	git pull upstream master
+
+		or
+	git fetch --all --prune
+	git reset --hard upstream/master
+	git push -u origin master
+
+
+
 
 
 
