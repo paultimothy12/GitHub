@@ -10,7 +10,7 @@
 	git remote add origin <githubrepo link .git>
 
 4.Making a file commit:
-	git commit fileName.ext -m "info about your commit"
+	git commit -m "info about your commit"
 
 5.Pushing local file to remote repo:
 	git push -u origin master
