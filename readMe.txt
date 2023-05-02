@@ -1,10 +1,10 @@
 1.Create a repository using GIT GUI
 	or
-  Go to your desired folder and hit =>	git init
+  Go to your desired folder and Hit => git init
 
 2.Making a follow on files(selecting files to save):
-	single file: git add fileName.extension
-	all files: git add .
+	single file: Hit => git add fileName.extension
+	all files: Hit => git add .
 	
 	Note:
 	You can unselect them if you dont need to commit the changes for now
@@ -13,13 +13,13 @@
 			git restore --staged .
 
 3.Connecting to remote repository(connect your local repository to remote repository):
-	git remote add origin <githubrepolink>
+	Hit => git remote add origin <githubrepolink>
 
 4.Making a file commit(saving selecting files):
-	git commit -m "info about your commit"
+	Hit => git commit -m "info about your commit"
 
 5.Pushing commits(log-your activities) to remote repository(saving your activities and changes to remote repository):
-	git push -u origin master
+	Hit => git push -u origin master
 	
 6.View all your activities:
 	Hit => git log
@@ -52,7 +52,7 @@
 	Case 1:
 		Hit => git reset <2nd commitId>
 		Now all the commits between 2nd and 5th(recent) commit will be removed permanently and changes of 5th commit will still be available.
-		You can push the changes(5th commit) to a seperate space called "stash" => git add .; git stash
+		You can push the changes(5th commit) to a seperate space called "stash". Hit => git add .; git stash
 			
 		You don't need those changes too, then Hit => git stash clear //changes in stash will also be cleared
 		Now your local will have 2 commits, if you want the same in remote repository(5 commits to 2 commits), do force push.
@@ -111,39 +111,55 @@
 
 13.Multiple commits into Single commit:
 	Hit => git rebase -i <commitId>
-	A interactive editor opens up now, You can see the first few lines like  pick <commitId> commitMessage
-   Change the commits from pick to s, to commit as single commit
-	pick <commitId1> message
-	s <commitId2> message
-	s <commitId3> message
-	pick <commitId4> message
-		Now, first three commits will be converted to single commit
-	close env and set a message
-   Now push 
-	git push -u origin branchName(-f)
+	A interactive editor opens up now, You can see the first few lines like  "pick <commitId> commitMessage"
+	Click I to enter insert mode, Change the commits from pick to s, to commit as single commit
+		pick <commitId1> message
+		s <commitId2> message
+		s <commitId3> message
+		pick <commitId4> message
+		
+		Now all commits with s will be combined with a pick above them, first three commits will be converted to single commit
+	Close the editor - Click Esc and then :x and another editor opens up and now enter a new message like before.
+	
+        Now push 
+		git push -u origin defaultBranchName -f
 
-Working on existing repos:
-Read before working,
-  Fork the existing repo to your repositories
-  Never work on master/main on repo, make new branches( 1PR/Branch )
+						=====WORKING ON EXISTING PROJECTS=====
 
-1.Clone the existing repo to our local:
-	git clone <repo link>
+Step 1: Forking existing repository,
+	Go to the existing repository on github website and fork the respository into your account using the fork button.
+	Note: A copy of that repository will be available in your account under your profile.
 
-2.(Optional) Adding upstream:
-	git remote add upstream <repo link>
+Step 2: Cloning the repositoy,
+	Go to the forked repository in your profile and click on code button and copy the repository link.
+	Now making a local copy of this repository,
+		Hit => git clone <forkedRepositoyLink>
 
-3.Work with branches and push them, Send a PR from GitHub
-   Now when upstream repo accepts the PR, upstream-master will be same as your fork-branch
-   But your fork master will be behind upstream-master and fork-branch.	
+Step 3: Create new branches, commit changes and push to remote,
+	*IMPORTANT* NEVER WORK ON DEFAULT BRANCH
 
-	To Sync upstream-master and fork-master:
-	git pull upstream master
-
-		or
-	git fetch --all --prune
-	git reset --hard upstream/master
-	git push -u origin master
+Step 4: To contribute your changes,
+	Go to your forked repository on github and click on contribute button and create a pull request.
+	(From your-forked-repository/newBranch To existing-repository/defaultBranch)
+	
+	Your PR will be accepted or rejected, if accepted the existing project default branch will be updated and commits will be saved.
+	
+	*IMPORTANT*
+	If you want to contribute "again" with same repository, CREATE NEW BRANCH -> start working then create a new PR.
+		
+		existing-repository/defaultBranch will have extra commits 
+		your-forked-repository/defaultBranch will be few commits behind of existing-repository/defaultBranch
+		
+		BEFORE CREATING NEW BRANCH:
+			SYNC YOUR FORK by using Sync Fork button 
+				so that your-forked-repository/defaultBranch will be up-to-date with existing-repository/defaultBranch
+			
+				OR
+			Add Upstream(existing-repository):
+				Hit => git remote add upstream <existing-repo link>
+				       git pull upstream <defaultBranchName>
+				
+ 
 
 
 
